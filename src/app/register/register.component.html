@@ -1,0 +1,34 @@
+<div class="container">
+    <h1 class="h4">Register</h1>
+    <form #form="ngForm" (ngSubmit)="submit(form)">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input 
+        ngModel name="username" id="username" #username="ngModel" (change)="log(username)"
+        type="text" class="form-control" 
+        required
+        minlength="3"
+        maxlength="10"
+        pattern="shashi"
+        >
+        <div class="alert alert-danger" *ngIf="username.touched && username.invalid">
+          <p *ngIf="username.errors.required">This field is required</p>
+          <p *ngIf="username.errors.minlength">Should be MiniMum 10 Characters</p>
+          <p *ngIf="username.errors.pattern"> Should be Match this Field</p>
+        </div>
+  
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" 
+        name="password" id="password"
+        class="form-control"
+        >
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary" [disabled]="form.invalid">Register</button>
+      </div>
+    </form>
+  </div>
+
+
