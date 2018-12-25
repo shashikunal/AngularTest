@@ -6,20 +6,19 @@
       ngModel name="username" id="username" #username="ngModel" (change)="log(username)"
       type="text" class="form-control" 
       required
-      minlength="3"
-      maxlength="10"
-      pattern="shashi"
+      
       >
       <div class="alert alert-danger" *ngIf="username.touched && username.invalid">
         <p *ngIf="username.errors.required">This field is required</p>
-        <p *ngIf="username.errors.minlength">Should be MiniMum 10 Characters</p>
-        <p *ngIf="username.errors.pattern"> Should be Match this Field</p>
+        
       </div>
 
     </div>
     <div class="form-group">
       <label for="password">Password</label>
       <input type="password" 
+      ngModel 
+      #password="ngModel"
       name="password" id="password"
       class="form-control"
       >

@@ -12,10 +12,12 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     
     firebase.auth().onAuthStateChanged(userData =>{
-      if(userData){
+      if(userData && userData.emailVerified){
+        
         this.isloggedIn = true;
       }else {
         this.isloggedIn = false;
+        firebase.auth().signOut();
       }
     })
 

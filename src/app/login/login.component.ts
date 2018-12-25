@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +17,15 @@ export class LoginComponent implements OnInit {
     console.log(username);
   }
 
-  submit(form){
+  submit(form:NgForm){
     console.log(form);
+    const username = form.value.username;
+    const password = form.value.password;
+    firebase.auth().signInWithEmailAndPassword(username , password).then(userData =>{
+      console.log('next');
+    }).catch(err =>{
+      console.log(err);
+      firebase.auth().signOut();
+    })
   }
 }
