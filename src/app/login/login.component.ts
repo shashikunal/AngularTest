@@ -22,10 +22,14 @@ export class LoginComponent implements OnInit {
     const username = form.value.username;
     const password = form.value.password;
     firebase.auth().signInWithEmailAndPassword(username , password).then(userData =>{
+    if(userData.user.emailVerified){
       console.log('next');
+    }else {
+      firebase.auth().signOut();
+    }
     }).catch(err =>{
       console.log(err);
-      firebase.auth().signOut();
+      
     })
   }
 }
