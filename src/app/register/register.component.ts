@@ -2,27 +2,17 @@ import { CustomValidator } from './custom.validator';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, ValidationErrors, NgForm, EmailValidator } from '@angular/forms';
 import * as firebase from 'firebase';
+import { NoticationService } from '../shared/notification.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  constructor(private notifier:NoticationService) { 
 
-  // form = new FormGroup({
-  //   username : new FormControl("" , [
-  //     Validators.required,
-  //     Validators.minLength(3),
-  //     Validators.pattern("shashi"),
-  //     CustomValidator.cannotContainSpace
-  //   ])
-  // });
-
-  // get username(){
-  //  return this.form.get('username');
-  // }
-
-  submit(form : NgForm){
+  }
+submit(form : NgForm){
     const username = form.value.username;
     const password = form.value.password;
     console.log(username , password);
@@ -39,12 +29,13 @@ export class RegisterComponent implements OnInit {
         firebase.auth().signOut();
       });
     }).catch(err=>{
+      this.notifier.display('error' , err.message);
       console.log(err)
     })
 
   }
 
-  constructor() { }
+  
 
   ngOnInit() {
   }

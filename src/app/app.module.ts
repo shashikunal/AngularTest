@@ -13,6 +13,8 @@ import { HomeComponent } from './home/home.component';
 import { RouterModule, Routes, Router } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import { RouteGuard } from './route-guard';
+import { NotificationComponent } from './notification/notification.component';
+import { NoticationService } from './shared/notification.service';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -35,7 +37,7 @@ const routes: Routes = [
     AllpostsComponent,
     AddpostComponent,
     PagenotfoundComponent,
-    HomeComponent,HeaderComponent
+    HomeComponent,HeaderComponent, NotificationComponent
 
   ],
   imports: [
@@ -44,7 +46,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [],
+  providers: [NoticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
